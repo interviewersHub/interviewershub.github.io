@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InterviewersHub</title>
+
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<body>
+
+    <div id="pageloader" class="pageloader"></div>
+    <div id="infraloader" class="infraloader is-active"></div>    
+    <section class="hero is-fullheight is-default is-bold">
+    
+        <nav x-data="initNavbar()" class="navbar is-fresh is-transparent no-shadow" role="navigation"
+            aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item"
+                        style="width:'200';
+                            height:'200';
+                            padding-left: 4rem;">
+                        <img src="/img/logo/ih-name.png" alt="">
+                    </a>
+        
+                    <!-- <a @click="openSidebar()" class="navbar-item is-hidden-desktop is-hidden-tablet">
+                        <div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                'open': $store.app.isSiderbarOpen,
+                                '': !$store.app.isSiderbarOpen
+                            }">
+                            <svg width="1000px" height="1000px">
+                                <path class="path1"
+                                    d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                                <path class="path2" d="M 300 500 L 700 500"></path>
+                                <path class="path3"
+                                    d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                            </svg>
+                            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+                        </div>
+                    </a> -->
+        
+                    <!-- <div class="navbar-burger" @click="openMobileMenu()">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle" :class="{
+                                    'active': mobileOpen,
+                                    '': !mobileOpen
+                                }">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                            </span>
+                    </div> -->
+                </div>
+        
+                <div id="navbar-menu" class="navbar-menu is-static" :class="{
+                        'is-active': mobileOpen,
+                        '': !mobileOpen
+                    }">
+        
+                    <!-- <div class="navbar-start">
+                        <a @click="openSidebar()" class="navbar-item is-hidden-mobile">
+                            <div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                    'open': $store.app.isSiderbarOpen,
+                                    '': !$store.app.isSiderbarOpen
+                                }">
+                                <svg width="1000px" height="1000px">
+                                    <path class="path1"
+                                        d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800">
+                                    </path>
+                                    <path class="path2" d="M 300 500 L 700 500"></path>
+                                    <path class="path3"
+                                        d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200">
+                                    </path>
+                                </svg>
+                                <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+                            </div>
+                        </a>
+                    </div> -->
+        
+                    <div class="navbar-end">
+                        <a id="candidate-nav" @click="showHomePage()" href="#" class="navbar-item is-secondary is-active">
+                            Candidate
+                        </a>
+                        <a id="mentor-nav" @click="showMentorPage()" class="navbar-item is-secondary">
+                            Become a mentor
+                        </a>
+                        <a href="#" class="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
+                            About Us
+                        </a>
+                        <!-- <a class="navbar-item">
+                            <span class="button signup-button rounded secondary-btn raised">
+                                Sign up
+                            </span>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav x-data="initNavbar()"  x-on:scroll.window="scroll()" id="navbar-clone" class="navbar is-fresh is-transparent" role="navigation" aria-label="main navigation" :class="{
+                'is-active': scrolled,
+                '': !scrolled
+            }">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item"
+                        style="width:'200';
+                            height:'200';
+                            padding-left: 4rem;">
+                        <img src="/img/logo/ih-name.png" alt="" width="200" height="200">
+                    </a>
+        
+                    <!-- <a @click="openSidebar()" class="navbar-item is-hidden-desktop is-hidden-tablet">
+                        <div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                'open': $store.app.isSiderbarOpen,
+                                '': !$store.app.isSiderbarOpen
+                            }">
+                            <svg width="1000px" height="1000px">
+                                <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                                <path class="path2" d="M 300 500 L 700 500"></path>
+                                <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                            </svg>
+                            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+                        </div>
+                    </a> -->
+        
+                    <!-- <div class="navbar-burger" @click="openMobileMenu()">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle" :class="{
+                                    'active': mobileOpen,
+                                    '': !mobileOpen
+                                }">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                            </span>
+                        </span>
+                    </div> -->
+                </div>
+        
+                <div id="cloned-navbar-menu" class="navbar-menu is-fixed" :class="{
+                        'is-active': mobileOpen,
+                        '': !mobileOpen
+                    }">
+        
+                    <div class="navbar-start">
+                        <!-- <a @click="openSidebar()" class="navbar-item is-hidden-mobile">
+                            <div id="cloned-menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: visible;" :class="{
+                                    'open': $store.app.isSiderbarOpen,
+                                    '': !$store.app.isSiderbarOpen
+                                }">
+                                <svg width="1000px" height="1000px">
+                                    <path class="path1" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                                    <path class="path2" d="M 300 500 L 700 500"></path>
+                                    <path class="path3" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                                </svg>
+                                <button id="cloned-menu-icon-trigger" class="menu-icon-trigger"></button>
+                            </div>
+                        </a> -->
+                    </div>
+        
+                    <div class="navbar-end">
+                        <a id="candidate-nav-clone" @click="showHomePage()" href="#" class="navbar-item is-secondary is-active">
+                            Candidate
+                        </a>
+                        <a id="mentor-nav-clone" @click="showMentorPage()" class="navbar-item is-secondary">
+                            Become a mentor
+                        </a>
+                        <a href="#" class="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
+                            About us
+                        </a>
+                        <!-- <a class="navbar-item">
+                            <span class="button signup-button rounded secondary-btn raised">
+                                Sign up
+                            </span>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </nav>    <div id="home-page">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-vcentered">
+                        <div class="column is-4 is-offset-1 landing-caption">
+                            <h1 class="title is-3 is-bold is-spaced">
+                                Build your portfolio with <i class="font-500">confidence</i>.
+                            </h1>
+                            <!-- <h2 class="subtitle is-5 is-muted">We are a platform with a global interviewers community aimed at helping engineers prepare for the actual job interview.</h2> -->
+                            <h2 class="subtitle is-5 is-muted">Get 1-on-1 introductions to high-growth mentors in world-class companies now.</h2>
+                            <div class="button-wrap">
+                                <a class="button cta is-rounded primary-btn raised">
+                                    Get Started
+                                </a>
+                                <a class="button cta is-rounded">
+                                    Discover
+                                </a>
+                            </div>
+                        </div>
+                        <div class="column is-6">                    
+                            <figure class="image is-4by3">
+                                <img src="/img/illustrations/features/video-background.svg" alt="Description">
+                                <iframe src="https://www.youtube.com/embed/WoyHWz_RKGo?autoplay=1&mute=1" 
+                                    frameborder="0" allowfullscreen
+                                    style="position: absolute;
+                                    top: 11.3%;
+                                    left: 15.5%;
+                                    width: 73.5%;
+                                    height: 71.2%;
+                                    border-radius: 18px;"></iframe>                                  
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="hero-foot mb-20">
+                <div class="container title-wrapper has-text-centered">
+                    <h3 class="subtitle is-5 is-muted mb-0">Meet mentors from top tech companies</h3>            
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/airbnb.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/apple.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/google.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/netflix.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/uber.svg">                        
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mentor-page" style="display: none;">
+            
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-vcentered">
+                        <div class="column is-4 is-offset-1 landing-caption">
+                            <h1 class="title is-3 is-bold is-spaced">
+                                Build your network with <i class="font-500">confidence</i>.
+                            </h1>
+                            <!-- <h2 class="subtitle is-5 is-muted">We are a platform with a global interviewers community aimed at helping engineers prepare for the actual job interview.</h2> -->
+                            <h2 class="subtitle is-5 is-muted">Thousands of candidates need your mentoring. Give them a taste of what is expected from them in the industry</h2>
+                            <div class="button-wrap">
+                                <a class="button cta is-rounded primary-btn raised">
+                                    Get Started
+                                </a>
+                                <a class="button cta is-rounded">
+                                    Discover
+                                </a>
+                            </div>
+                        </div>
+                        <div class="column is-6">                    
+                            <figure class="image is-4by3">
+                                <img src="/img/illustrations/features/video-background.svg" alt="Description">
+                                <iframe src="https://www.youtube.com/embed/JXeJANDKwDc" 
+                                    frameborder="0" allowfullscreen
+                                    style="position: absolute;
+                                    top: 11.3%;
+                                    left: 15.5%;
+                                    width: 73.5%;
+                                    height: 71.2%;
+                                    border-radius: 18px;"></iframe>
+                            </figure>                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="hero-foot mb-20">
+                <div class="container title-wrapper has-text-centered">
+                    <h3 class="subtitle is-5 is-muted mb-0">Get a chance to build network with mentors from top tech companies</h3>            
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/airbnb.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/apple.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/google.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/netflix.svg">                        
+                            </li>
+                            <li>                        
+                                <img class="partner-logo" src="/img/logo/clients/uber.svg">                        
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <section class="section section-feature-grey is-medium">
+                <div class="container">
+                    <div class="title-wrapper has-text-centered">
+                        <h2 class="title is-2">What's in it for you?</h2>
+                        <h3 class="subtitle is-5 is-muted">Trust us you can do a lot here.</h3>
+                        <div class="divider is-centered"></div>
+                    </div>
+        
+                    <div class="content-wrapper">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="feature-card is-bordered has-text-centered is-feature-reveal is-4">
+                                    <div class="card-title">
+                                        <h4>Earn extra income</h4>
+                                        <br>
+                                    </div>
+                                    <div class="card-icon">
+                                        <img src="/img/icons/rocket.svg">
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Refer exceptional Preplaced candidates and earn some extra income in form of referral money. Selected mentors get additional rewards on outstanding performance.</p>
+                                        <br>                                
+                                    </div>
+                                    <!-- <div class="card-action">
+                                        <a href="#" class="button btn-align-md primary-btn raised">Free Trial</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="feature-card is-bordered has-text-centered is-feature-reveal is-4">
+                                    <div class="card-title">
+                                        <h4>Strengthen your <br> technical skills </h4>
+                                    </div>
+                                    <div class="card-icon">
+                                        <img src="/img/icons/laptop-cloud.svg">                                
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Deepen your personal knowledge by teaching others. Hone your teaching and communication skills through genuine feedback from students and peers about your sessions.</p>                            
+                                        <br>                                
+                                    </div>
+                                    <!-- <div class="card-action">
+                                        <a href="#" class="button btn-align-md primary-btn raised">Get Started</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="feature-card is-bordered has-text-centered is-feature-reveal is-4">
+                                    <div class="card-title">
+                                        <h4>Grow your network</h4>
+                                        <br>
+                                    </div>
+                                    <div class="card-icon">
+                                        <img src="/img/icons/web.svg">                                
+                                    </div>
+                                    <div class="card-text">
+                                        <p>We all know the significance of having a great network. Interact, discuss topics of interest and grow your relations with like-minded people.</p>
+                                        <br/>
+                                        <br>                                                      
+                                    </div>
+                                    <!-- <div class="card-action">
+                                        <a href="#" class="button btn-align-md primary-btn raised">Get Started</a>
+                                    </div> -->
+                                </div>
+                            </div>                    
+                            <div class="column">
+                                <div class="feature-card is-bordered has-text-centered is-feature-reveal is-4">
+                                    <div class="card-title">
+                                        <h4>Gain valuable leadership <br> and management skills</h4>
+                                    </div>
+                                    <div class="card-icon">
+                                        <img src="/img/icons/light-bulb.svg">
+                                    </div>
+                                    <div class="card-text">
+                                        <p>Develop your management & people skills by leading a team of students to strive towards a common goal. Learn how to motivate others and provide guidance to aspiring learners.</p>
+                                        <br/>                            
+                                    </div>
+                                    <!-- <div class="card-action">
+                                        <a href="#" class="button btn-align-md primary-btn raised">Get Started</a>
+                                    </div> -->
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="section is-medium">
+                <div class="container">            
+                    <div class="columns is-vcentered side-feature mt-60">
+                        <div class="column is-4 is-offset-2">
+                            <h3 class="title is-3 mb-10 is-title-reveal">Earn as you go.</h3>
+                            <p class="subtitle is-5 is-muted">
+                                You will get paid for each interview you take on our platform.
+                            </p>
+                            <p class="subtitle is-5 is-muted"> You don't have to worry about when the amount is gonna hit your bank</p>
+                            <p class="subtitle is-5 is-muted"> We value your time and guidance and hence we you after each interview.</p>
+                        </div>
+                        <div class="column is-5">
+                            <img src="/img/illustrations/mentor/mentor-earn.png" alt="">
+                        </div>
+                    </div>                
+                </div>
+            </section>
+        
+            <section class="section section-feature-grey is-medium">
+                <div class="container">
+        
+                    <div class="columns is-vcentered app-side">
+                        <div class="column is-5 is-offset-1">
+                            <h3 class="title is-3 is-spaced is-title-reveal">Start making a difference</h3>
+                            <p class="subtitle is-5 is-muted">Take Mock Interviews for students and other working professionals</p>
+                            <p class="subtitle is-5 is-muted">Help candidates prepare for real interviews by providing your valuable feedback</p>
+                            <p class="subtitle is-5 is-muted">Refer candidates who impress you during the interview sessions.</p>
+                        </div>
+                        <div class="column is-8">
+                            <div class="has-text-centered">
+                                <img class="pushed-image" src="/img/illustrations/worker.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="section section-light-grey is-medium">
+                <div class="container">
+                    <div class="title-wrapper has-text-centered">
+                        <h2 class="title is-2 is-spaced">Ready to join us as a mentor? </h2>
+                        <h3 class="subtitle is-5 is-muted">We'd love to hear from You</h3>
+                        <div class="divider is-centered"></div>
+                    </div>
+        
+                    <div class="content-wrapper">
+                        <div class="columns">
+                            <div class="column is-6 is-offset-3">
+                                <form>
+                                    <div class="columns is-multiline">
+                                        <div class="column is-6">
+                                            <input class="input is-medium" type="text" placeholder="First Name *">
+                                        </div>
+                                        <div class="column is-6">
+                                            <input class="input is-medium" type="text" placeholder="Last Name *">
+                                        </div>
+                                        <div class="column is-6">
+                                            <input class="input is-medium" type="text" placeholder="Email *">
+                                        </div>
+                                        <div class="column is-6">
+                                            <input class="input is-medium" type="email" placeholder="Company">
+                                        </div>
+                                        <div class="column is-12">
+                                            <textarea class="textarea" rows="6" placeholder=""></textarea>
+                                        </div>
+                                        <div class="column is-12">
+                                            <div class="form-footer has-text-right mt-10">
+                                                <button class="button cta is-large primary-btn form-button raised is-clear">Send Message</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <div id="home-page-details">
+        <section class="section section-feature-grey is-medium">
+            <div class="container">
+                <div class="title-wrapper has-text-centered">
+                    <h2 class="title is-2">Everything you need to get Hired.</h2>
+                    <h3 class="subtitle is-5 is-muted">Use your talent to move forward.</h3>
+                    <div class="divider is-centered"></div>
+                </div>
+    
+                <div class="content-wrapper">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                                <div class="card-title">
+                                    <h4>Open Mentor Community</h4>
+                                </div>
+                                <div class="card-icon">
+                                    <img src="/img/icons/web.svg">
+                                </div>
+                                <div class="card-text">
+                                    <p>We are proud of our Mentors community. They have 50+ interviews experience. Learn about their mental models and speak their language in your real interview.</p>
+                                </div>
+                                <!-- <div class="card-action">
+                                    <a href="#" class="button btn-align-md primary-btn raised">Free Trial</a>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                                <div class="card-title">
+                                    <h4>AI Profile builder</h4>
+                                </div>
+                                <div class="card-icon">
+                                    <img src="/img/icons/rocket.svg">
+                                </div>
+                                <div class="card-text">
+                                    <p>Our State-of-the-art AI Profile builder creates your skill profile everytime you take an interview with us. This profile is highly trusted by our partner companies.</p>                            
+                                </div>
+                                <!-- <div class="card-action">
+                                    <a href="#" class="button btn-align-md primary-btn raised">Get Started</a>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                                <div class="card-title">
+                                    <h4>Massive Interview corpus</h4>
+                                </div>
+                                <div class="card-icon">
+                                    <img src="/img/icons/light-bulb.svg">
+                                </div>
+                                <div class="card-text">
+                                    <p>We have a huge corpus of interviews from which you can learn anytime and perform much better in the actual interviews.</p>
+                                    <br/>                            
+                                </div>
+                                <!-- <div class="card-action">
+                                    <a href="#" class="button btn-align-md primary-btn raised">Get Started</a>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="feature-card is-bordered has-text-centered is-feature-reveal">
+                                <div class="card-title">
+                                    <h4>Targeted Referrals</h4>
+                                </div>
+                                <div class="card-icon">
+                                    <img src="/img/icons/laptop-cloud.svg">
+                                </div>
+                                <div class="card-text">
+                                    <p>We've partnered with over 200+ tech companies. Our candidates get priority over every other applicant. Why? Because our mentors loved your performance.</p>                            
+                                </div>
+                                <!-- <div class="card-action">
+                                    <a href="#" class="button btn-align-md primary-btn raised">Get Started</a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="section is-medium">
+            <div class="container">
+                <div class="title-wrapper has-text-centered">
+                    <h2 class="title is-2">How it works</h2>
+                    <h3 class="subtitle is-5 is-muted">Get a closer look at the process</h3>
+                    <div class="divider is-centered"></div>
+                </div>
+    
+                <div class="columns is-vcentered side-feature mt-60">
+                    <div class="column is-4 is-offset-2">
+                        <h3 class="title is-3 mb-10 is-title-reveal">Discover and Connect with Mentors</h3>
+                        <p class="subtitle is-5 is-muted">
+                            Have doubts about your skills or interview process? 
+                        </p>
+                        <p class="subtitle is-5 is-muted"> Not sure how to get referrals or preparing an interview plan?</p>
+                        <p class="subtitle is-5 is-muted">Just book a mock interview and get answers to all your query from industry experts in same domain</p>
+                    </div>
+                    <div class="column is-5">
+                        <img src="/img/illustrations/features/feature-1.svg" alt="">
+                    </div>
+                </div>
+    
+                <div class="columns is-vcentered side-feature mt-60">
+                    <div class="column is-6 is-offset-1">
+                        <img src="/img/illustrations/features/mentor.svg" alt="">
+                    </div>
+                    <div class="column is-4">
+                        <h3 class="title is-3 mb-10 is-title-reveal">Get SWOT Analysis</h3>
+                        <p class="subtitle is-5 is-muted">Our mentors will give you an extensive feedback of your strengths, weaknesses, opportunities in areas where there is scope of improvement and potential threats.</p>
+    
+                        <p class="subtitle is-5 is-muted"> This will help you understand your skills and increase confidence.</p>
+                
+                    </div>
+                </div>
+    
+                <div class="columns is-vcentered side-feature mt-60">
+                    <div class="column is-4 is-offset-2">
+                        <h3 class="title is-3 mb-10 is-title-reveal">Build Profile</h3>
+                        <p class="subtitle is-5 is-muted">
+                            Employee referrals are often thought to be the proverbial golden tickets. Get referrals from industry experts, thus exponetially increasing your chances of getting hired.
+                        </p>
+                        <p class="subtitle is-5 is-muted"> You’ve probably heard that internal referrals result in better hiring outcomes. Research has found that referred candidates are of higher quality than applicants from the general public and are more likely to receive an offer and perform better.</p>                
+                    </div>
+                    <div class="column is-5">
+                        <img src="/img/illustrations/features/feature-2.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="section section-feature-grey is-medium">
+            <div class="container">
+    
+                <div class="columns is-vcentered app-side">
+                    <div class="column is-4 is-offset-1">
+                        <h3 class="title is-3 is-spaced is-title-reveal">Your One True Resume Score</h3>
+                        <p class="subtitle is-5 is-muted">Our State-of-the-art AI profile builder will build your detailed profile after every interview you take on our platform. We are dedicated towards providing you all the insights and analysis needed for you to get your dream job.</p>
+                        <p class="subtitle is-5 is-muted">This score is trusted by companies like Google, Airbnb, Amazon, Netflix and 100s of high growth starts-ups, which will give your candidature a huge advantage.</p>
+                    </div>
+                    <div class="column is-7">
+                        <div class="has-text-centered">
+                            <img class="pushed-image" src="/img/illustrations/mockups/trs.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- <section class="section is-medium">
+            <div class="container">
+                <div class="title-wrapper has-text-centered">
+                    <h2 class="title is-2">Wait, there's more</h2>
+                    <h3 class="subtitle is-5 is-muted">To make you super happy</h3>
+                    <div class="divider is-centered"></div>
+                </div>
+    
+                <div class="content-wrapper">
+                    <div class="columns is-multiline icon-list">
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-github" size="large"></ion-icon>
+                                </div>
+                                <h4>Github</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-bitbucket" size="large"></ion-icon>
+                                </div>
+                                <h4>Bitbucket</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-slack" size="large"></ion-icon>
+                                </div>
+                                <h4>Slack</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-npm" size="large"></ion-icon>
+                                </div>
+                                <h4>Npm</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-javascript" size="large"></ion-icon>
+                                </div>
+                                <h4>Javascript</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-nodejs" size="large"></ion-icon>
+                                </div>
+                                <h4>Nodejs</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-angular" size="large"></ion-icon>
+                                </div>
+                                <h4>Angular</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-google" size="large"></ion-icon>
+                                </div>
+                                <h4>Google</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-python" size="large"></ion-icon>
+                                </div>
+                                <h4>Python</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-wordpress" size="large"></ion-icon>
+                                </div>
+                                <h4>WordPress</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-android" size="large"></ion-icon>
+                                </div>
+                                <h4>Android</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                        <div class="column is-3">
+                            <div class="feature-icon has-text-centered">
+                                <div class="icon-wrap is-icon-reveal">
+                                    <ion-icon name="logo-apple" size="large"></ion-icon>
+                                </div>
+                                <h4>Apple</h4>
+                                <p>Some feature text</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    
+        <section class="section is-medium  has-background-image" data-background="https://source.unsplash.com/g30P1zcOzXo/1600x900" data-color="#4FC1EA" data-color-opacity=".6">
+            <div class="overlay"></div>
+            <div class="container">
+    
+                <div class="title-wrapper has-text-centered">
+                    <h2 class="title is-2 light-text is-spaced">Our customers love us</h2>
+                    <h3 class="subtitle is-5 light-text">Look at what they say about us</h3>
+                </div>
+    
+                <div class="content-wrapper">
+                    <div class="columns is-vcentered">
+                        <div class="column is-4">
+                            <figure class="testimonial">
+                                <blockquote>
+                                    Having an Experienced mentor by my side during my interview preparation was a game-changer. High-quality guidance and support were just one call away.
+                                </blockquote>
+                                <div class="author">
+                                    <img src="/img/illustrations/faces/1.png" alt=""/>
+                                    <h5>Irma Walters</h5><span>Senior Architect</span>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="column is-4">
+                            <figure class="testimonial">
+                                <blockquote>
+                                    I was pleasantly surprised at my actual interview when almost all the questions on similar lines to the mock interview I attended at Preplaced. The mentor also helped me make my resume relevant for the company, thereby helping me to get shortlisted for the interview round.
+                                </blockquote>
+                                <div class="author">
+                                    <img src="/img/illustrations/faces/2.png" alt=""/>
+                                    <h5>John Bradley</h5><span>Full Stack Engineer</span>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="column is-4">
+                            <figure class="testimonial">
+                                <blockquote>
+                                    Overall, it was an amazing experience. I would highly recommend anybody who is sitting for their campus placements to at least get a mock interview session done before they sit for their actual interviews. Trust me, it will do wonders!
+                                </blockquote>
+                                <div class="author">
+                                    <img src="/img/illustrations/faces/3.png" alt=""/>
+                                    <h5>Gary Blackman</h5><span>Data Science</span>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="section is-medium">
+            <div class="container">
+                <div class="title-wrapper has-text-centered">
+                    <h2 class="title is-2">Get Started</h2>
+                    <h3 class="subtitle is-5 is-muted">Choose one of our plans</h3>
+                    <div class="divider is-centered"></div>
+                </div>
+    
+                <div class="pricing-wrap">
+                    <div class="feature-card is-pricing has-text-centered">
+                        <h3 class="plan-name">Individual</h3>
+                        <img src="/img/illustrations/pricing/1.svg" alt=""/>
+                        <div class="price">
+                            0
+                        </div>
+                        <p>Sign up and start get hired by your dream company</p>
+                        <a class="button is-fullwidth primary-btn raised is-bold">Get Started</a>
+                    </div>
+                    <div class="feature-card is-pricing has-text-centered">
+                        <h3 class="plan-name">Recruiter</h3>
+                        <img src="/img/illustrations/pricing/2.svg" alt=""/>
+                        <div class="price">
+                            1500
+                        </div>
+                        <p>Sign up to see the list of all the pre-vetted candidates</p>
+                        <a class="button is-fullwidth is-bold">Get Started</a>
+                    </div>
+                    <div class="feature-card is-pricing has-text-centered">
+                        <h3 class="plan-name">Business</h3>
+                        <img src="/img/illustrations/pricing/3.svg" alt=""/>
+                        <div class="price">
+                            4500
+                        </div>
+                        <p>Hire from thousands of already interviewed candidates.</p>
+                        <a class="button is-fullwidth is-bold">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="section section-light-grey is-medium">
+            <div class="container">
+                <div class="title-wrapper has-text-centered">
+                    <h2 class="title is-2 is-spaced">Drop us a line or two </h2>
+                    <h3 class="subtitle is-5 is-muted">We'd love to hear from You</h3>
+                    <div class="divider is-centered"></div>
+                </div>
+    
+                <div class="content-wrapper">
+                    <div class="columns">
+                        <div class="column is-6 is-offset-3">
+                            <form>
+                                <div class="columns is-multiline">
+                                    <div class="column is-6">
+                                        <input class="input is-medium" type="text" placeholder="First Name *">
+                                    </div>
+                                    <div class="column is-6">
+                                        <input class="input is-medium" type="text" placeholder="Last Name *">
+                                    </div>
+                                    <div class="column is-6">
+                                        <input class="input is-medium" type="text" placeholder="Email *">
+                                    </div>
+                                    <div class="column is-6">
+                                        <input class="input is-medium" type="email" placeholder="Company">
+                                    </div>
+                                    <div class="column is-12">
+                                        <textarea class="textarea" rows="6" placeholder=""></textarea>
+                                    </div>
+                                    <div class="column is-12">
+                                        <div class="form-footer has-text-right mt-10">
+                                            <button class="button cta is-large primary-btn form-button raised is-clear">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    
+    
+    <div id="auth-modal" class="modal">
+        <div class="modal-background modal-dismiss"></div>
+        <div class="modal-content">
+            <div class="flex-card auth-card">
+                <div class="tabs-wrapper">
+                    <div class="tabs">
+                        <ul>
+                            <li class="is-active" data-tab="login-tab"><a>Login</a></li>
+                            <li data-tab="register-tab"><a>Register</a></li>
+                        </ul>
+                    </div>
+                    <div id="login-tab" class="tab-content is-active">
+                        <div class="field">
+                            <label>Username</label>
+                            <div class="control">
+                                <input type="text" class="input is-medium" placeholder="Enter username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="control">
+                                <input type="password" class="input is-medium" placeholder="Enter password">
+                            </div>
+                        </div>
+    
+                        <a class="button is-fullwidth secondary-btn is-rounded raised">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large modal-dismiss" aria-label="close"></button>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <footer class="footer footer-dark">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="footer-logo">
+                        <img src="/img/logo/ih-name-dark.png">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Product</h3>
+                        </div>
+                        <ul class="link-list">
+                            <li><a href="#">Discover features</a></li>
+                            <li><a href="#">Why choose our Product ?</a></li>
+                            <li><a href="#">Compare features</a></li>
+                            <li><a href="#">Our Roadmap</a></li>
+                            <li><a href="#">Request features</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Docs</h3>
+                        </div>
+                        <ul class="link-list">
+                            <li><a href="#">Get Started</a></li>
+                            <li><a href="#">User guides</a></li>
+                            <li><a href="#">Admin guide</a></li>
+                            <li><a href="#">Developers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Blogroll</h3>
+                        </div>
+                        <ul class="link-list">
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Tech articles</a></li>
+                            <li><a href="#">Video Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>Follow Us</h3>
+                            <nav class="level is-mobile">
+                                <div class="level-left">
+                                    <a class="level-item" href="https://github.com/#">
+                                        <span class="icon">
+                                            <ion-icon name="logo-github" size="large"></ion-icon>
+                                        </span>
+                                    </a>
+                                    <a class="level-item" href="https://facebook.com/#">
+                                        <span class="icon">
+                                            <ion-icon name="logo-facebook" size="large"></ion-icon>
+                                        </span>
+                                    </a>
+                                    <a class="level-item" href="https://google.com/#">
+                                        <span class="icon">
+                                            <ion-icon name="logo-google" size="large"></ion-icon>
+                                        </span>
+                                    </a>
+                                    <a class="level-item" href="https://linkedin.com/#">
+                                        <span class="icon">
+                                            <ion-icon name="logo-linkedin" size="large"></ion-icon>
+                                        </span>
+                                    </a>
+                                </div>
+                            </nav>
+    
+                            <!-- <a href="https://bulma.io" target="_blank">
+                                <img src="/img/logo/made-with-bulma.png" alt="Made with Bulma" width="128" height="24">
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Back To Top Button -->
+    <div x-data="initBackToTop()" x-on:scroll.window="scroll($event)" @click="goTop($event)" id="backtotop"><a href="javascript:" :class="{
+        'visible': scrolled,
+        '': !scrolled
+    }"></a></div>    <div x-data="initSidebar()" class="sidebar" :class="{
+            'is-active': $store.app.isSiderbarOpen,
+            '': !$store.app.isSiderbarOpen
+        }">
+        <div class="sidebar-header">
+            <img src="/img/logo/fresh-square.svg">
+            <a @click="closeSidebar()" class="sidebar-close" href="javascript:void(0);"><i data-feather="x"></i></a>
+        </div>
+        <div class="inner">
+            <ul class="sidebar-menu">
+                <li><span class="nav-section-title"></span></li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-1" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-1',
+                        '': openedMenu != 'sidebar-menu-1'
+                    }">
+                <a href="#">
+                    <span class="material-icons">apps</span>
+                    <span>Apps</span>
+                </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-1'">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Documents</a></li>
+                    </ul>
+                </li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-2" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-2',
+                        '': openedMenu != 'sidebar-menu-2'
+                    }">
+                    <a href="#">
+                        <span class="material-icons">duo</span>
+                        <span>Messages</span>
+                    </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-2'">
+                        <li><a href="#">Inbox</a></li>
+                        <li><a href="#">Compose</a></li>
+                        <li><a href="#">Video</a></li>
+                    </ul>
+                </li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-3" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-3',
+                        '': openedMenu != 'sidebar-menu-3'
+                    }">
+                    <a href="#">
+                        <span class="material-icons">insert_photo</span>
+                        <span>Media</span>
+                    </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-3'">
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Upload</a></li>
+                    </ul>
+                </li>
+                <li @click="openSidebarMenu($event)" data-menu="sidebar-menu-4" class="have-children" :class="{
+                        'active': openedMenu === 'sidebar-menu-4',
+                        '': openedMenu != 'sidebar-menu-4'
+                    }">
+                    <a href="#">
+                        <span class="material-icons">policy</span>
+                        <span>Settings</span>
+                    </a>
+                    <ul x-show.transition="openedMenu === 'sidebar-menu-4'">
+                        <li><a href="#">User settings</a></li>
+                        <li><a href="#">App settings</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="./js/bundle.js"></script>
+
+</body>
+
+</html>
